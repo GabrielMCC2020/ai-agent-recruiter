@@ -49,3 +49,25 @@ export const interviewSummaries = pgTable("interview_summaries", {
     .defaultNow()
     .notNull(),
 });
+
+export const candidates = pgTable("candidates", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  position: text("position"),
+  experience: text("experience"), // in years or description
+  skills: jsonb("skills"), // array of strings
+  qualifications: text("qualifications"),
+  resumeUrl: text("resume_url"),
+  notes: text("notes"),
+  status: text("status").notNull().default("active"), // active, archived, rejected, hired
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+});
