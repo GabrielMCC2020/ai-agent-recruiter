@@ -71,3 +71,26 @@ export const candidates = pgTable("candidates", {
     .defaultNow()
     .notNull(),
 });
+
+export const jobs = pgTable("jobs", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  title: text("title").notNull(),
+  department: text("department"),
+  description: text("description").notNull(),
+  requirements: jsonb("requirements"), // array of strings
+  responsibilities: jsonb("responsibilities"), // array of strings
+  location: text("location"),
+  salaryRange: text("salary_range"),
+  jobType: text("job_type"), // full-time, part-time, contract, remote
+  skills: jsonb("skills"), // array of strings
+  yearsOfExperience: text("years_of_experience"),
+  qualifications: text("qualifications"),
+  status: text("status").notNull().default("draft"), // draft, active, expired, closed
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+});
