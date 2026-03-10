@@ -12,6 +12,7 @@ import {
   Crown,
   LogOut,
   User,
+  MessageSquare,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -53,6 +54,11 @@ const navItems = [
     title: "Candidates",
     href: "/dashboard/candidates",
     icon: Users,
+  },
+  {
+    title: "Interviews",
+    href: "/dashboard/interviews",
+    icon: MessageSquare,
   },
   {
     title: "Schedules",

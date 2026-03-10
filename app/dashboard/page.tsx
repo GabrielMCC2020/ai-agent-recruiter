@@ -9,7 +9,7 @@ export default function DashboardPage() {
       </div>
       
       {/* Placeholder for future dashboard content */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 grid-rows-2 grid-flow-col gap-4">
         {[
           { title: "Total Jobs", value: "12", description: "Active job postings" },
           { title: "Candidates", value: "156", description: "Total candidates" },
@@ -35,4 +35,5 @@ export default function DashboardPage() {
     </div>
   );
 }
+
 

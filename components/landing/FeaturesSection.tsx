@@ -81,7 +81,7 @@ const colorMap: Record<string, { bg: string; border: string; text: string; glow:
 
 export default function FeaturesSection() {
   return (
-    <section id="features" className="bg-[#0d1224] py-24">
+    <section id="features" className="bg-[#0d1224] py-16">
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -100,7 +100,7 @@ export default function FeaturesSection() {
         </div>
 
         {/* Feature Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
           {features.map((feature) => {
             const c = colorMap[feature.color];
             const Icon = feature.icon;
