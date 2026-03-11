@@ -56,11 +56,6 @@ const navItems = [
     icon: Users,
   },
   {
-    title: "Interviews",
-    href: "/dashboard/interviews",
-    icon: MessageSquare,
-  },
-  {
     title: "Schedules",
     href: "/dashboard/schedules",
     icon: Calendar,

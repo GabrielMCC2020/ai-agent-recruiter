@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import {
   Mic,
@@ -24,6 +24,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { getInterviewDurationText } from "@/lib/utils/settings-utils";
 
 export default function InterviewPage() {
   const params = useParams();
@@ -32,13 +33,40 @@ export default function InterviewPage() {
   const [fullName, setFullName] = useState("");
   const [jobDescription, setJobDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [interviewSettings, setInterviewSettings] = useState<any>(null);
+  const [companyBranding, setCompanyBranding] = useState<{
+    name: string | null;
+    logo: string | null;
+  }>({ name: null, logo: null });
 
-  // Placeholder interview data - in production, this would be fetched based on interviewId
+  // Fetch interview settings on component mount
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const response = await fetch("/api/settings");
+        if (response.ok) {
+          const settings = await response.json();
+          setInterviewSettings(settings);
+          setCompanyBranding({
+            name: settings.companyName,
+            logo: settings.companyLogo,
+          });
+        }
+      } catch (error) {
+        console.error("Failed to fetch interview settings:", error);
+      }
+    };
+    fetchSettings();
+  }, []);
+
+  // Placeholder interview data - will be enhanced with settings
   const interviewData = {
     title: "Software Engineer Interview",
-    company: "Tech Corp Inc.",
+    company: companyBranding.name || "Tech Corp Inc.",
     position: "Senior Frontend Developer",
-    duration: "30 minutes",
+    duration: interviewSettings
+      ? getInterviewDurationText(interviewSettings.interviewDuration)
+      : "30 minutes",
     date: new Date().toLocaleDateString("en-US", {
       weekday: "long",
       year: "numeric",
@@ -50,34 +78,56 @@ export default function InterviewPage() {
     requirements: [
       "Stable internet connection",
       "Working microphone",
-      "Working camera",
+      interviewSettings?.enableRecording ? "Working camera" : undefined,
       "Quiet environment",
-      "Browser with microphone and camera access",
-    ],
+      "Browser with microphone" + (interviewSettings?.enableRecording ? " and camera" : "") + " access",
+    ].filter(Boolean) as string[],
   };
 
   const resolvedJobDescription =
     jobDescription.trim() ||
     `Role: ${interviewData.position} at ${interviewData.company}. ${interviewData.description}`;
 
-  const handleStartInterview = () => {
+  const handleStartInterview = async () => {
     if (!fullName.trim()) {
       return;
     }
     setIsLoading(true);
-    const query = new URLSearchParams({
-      name: fullName.trim(),
-      company: interviewData.company,
-      position: interviewData.position,
-      title: interviewData.title,
-      jobDescription: resolvedJobDescription,
-      autoStart: "1",
-    });
-    // In production, this would navigate to the actual interview session
-    // For now, we'll just simulate the start
-    setTimeout(() => {
+
+    try {
+      // Create interview record with settings
+      const createResponse = await fetch("/api/interview/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          interviewId,
+          title: interviewData.title,
+          company: interviewData.company,
+          position: interviewData.position,
+          jobDescription: resolvedJobDescription,
+          candidateName: fullName.trim(),
+        }),
+      });
+
+      if (!createResponse.ok) {
+        throw new Error("Failed to create interview");
+      }
+
+      const query = new URLSearchParams({
+        name: fullName.trim(),
+        company: interviewData.company,
+        position: interviewData.position,
+        title: interviewData.title,
+        jobDescription: resolvedJobDescription,
+        autoStart: "1",
+      });
+
+      // Navigate to interview session
       router.push(`/interview/${interviewId}/session?${query.toString()}`);
-    }, 1000);
+    } catch (error) {
+      console.error("Error starting interview:", error);
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -92,9 +142,24 @@ export default function InterviewPage() {
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                    <Mic className="h-6 w-6 text-primary" />
-                  </div>
+                  {companyBranding.logo ? (
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white border">
+                      <img
+                        src={companyBranding.logo}
+                        alt="Company Logo"
+                        className="h-10 w-10 object-contain"
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                          e.currentTarget.parentElement!.innerHTML =
+                            '<div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10"><svg class="h-6 w-6 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></div>';
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                      <Mic className="h-6 w-6 text-primary" />
+                    </div>
+                  )}
                   <div>
                     <CardTitle className="text-xl">
                       {interviewData.title}

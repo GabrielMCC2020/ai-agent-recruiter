@@ -2,9 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 import { syncUserFromClerk } from "@/lib/auth/sync-user";
-import { AppSidebar } from "@/components/dashboard/app-sidebar";
-import { DashboardHeader } from "@/components/dashboard/dashboard-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { DashboardClientLayout } from "./dashboard-client-layout";
 
 export default async function DashboardLayout({
   children,
@@ -22,13 +20,9 @@ export default async function DashboardLayout({
   await syncUserFromClerk();
 
   return (
-    <SidebarProvider defaultOpen={true}>
-      <AppSidebar />
-      <SidebarInset>
-        <DashboardHeader />
-        <main className="flex-1 p-6">{children}</main>
-      </SidebarInset>
-    </SidebarProvider>
+    <DashboardClientLayout>
+      {children}
+    </DashboardClientLayout>
   );
 }
 

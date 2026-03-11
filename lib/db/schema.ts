@@ -1,4 +1,4 @@
-import { pgTable, serial, text, timestamp, integer, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, timestamp, integer, jsonb, boolean } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -87,6 +87,49 @@ export const jobs = pgTable("jobs", {
   yearsOfExperience: text("years_of_experience"),
   qualifications: text("qualifications"),
   status: text("status").notNull().default("draft"), // draft, active, expired, closed
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+});
+
+export const recruiterSettings = pgTable("recruiter_settings", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull().unique(),
+  // Voice Agent Settings
+  voiceType: text("voice_type").notNull().default("professional"), // professional, friendly, formal, casual
+  voiceTone: text("voice_tone").notNull().default("neutral"), // neutral, warm, energetic, calm
+  languagePreference: text("language_preference").notNull().default("english"),
+  // Interview Configuration
+  questionCount: integer("question_count").notNull().default(5), // total questions per interview
+  technicalQuestionsPercentage: integer("technical_questions_percentage").notNull().default(60),
+  behavioralQuestionsPercentage: integer("behavioral_questions_percentage").notNull().default(40),
+  questionDifficulty: text("question_difficulty").notNull().default("medium"), // easy, medium, hard, mixed
+  interviewDuration: integer("interview_duration").notNull().default(30), // in minutes
+  timePerQuestion: integer("time_per_question").notNull().default(5), // in minutes
+  // AI Prompt Settings
+  systemPrompt: text("system_prompt"),
+  evaluationCriteria: jsonb("evaluation_criteria"), // array of criteria to evaluate candidates
+  customInstructions: text("custom_instructions"), // custom instructions for AI
+  // Interview Flow
+  enableBreaksBetweenQuestions: boolean("enable_breaks_between_questions").notNull().default(true),
+  breakDuration: integer("break_duration").notNull().default(2), // in seconds
+  allowCandidateQuestions: boolean("allow_candidate_questions").notNull().default(true),
+  allowCandidateToSkipQuestions: boolean("allow_candidate_to_skip_questions").notNull().default(false),
+  // Notification Settings
+  sendInterviewSummaryEmail: boolean("send_interview_summary_email").notNull().default(true),
+  sendCandidateReminder: boolean("send_candidate_reminder").notNull().default(true),
+  reminderTime: integer("reminder_time").notNull().default(24), // in hours before interview
+  // Performance Settings
+  autoSaveResponses: boolean("auto_save_responses").notNull().default(true),
+  enableRecording: boolean("enable_recording").notNull().default(true),
+  enableTranscript: boolean("enable_transcript").notNull().default(true),
+  // Branding
+  companyName: text("company_name"),
+  companyLogo: text("company_logo"),
+  
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()
     .notNull(),
