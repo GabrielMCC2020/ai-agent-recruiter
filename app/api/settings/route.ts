@@ -103,15 +103,19 @@ async function ensureRecruiterSettingsTable() {
 
 function pickUpdatableSettings(payload: unknown) {
   const raw = payload && typeof payload === "object" ? (payload as Record<string, unknown>) : {};
-  const filtered: Partial<Record<SettingsUpdatableKey, unknown>> = {};
+  const filtered: Record<string, unknown> = {};
 
   for (const key of SETTINGS_UPDATABLE_KEYS) {
     if (Object.prototype.hasOwnProperty.call(raw, key)) {
-      filtered[key] = raw[key];
+      const value = raw[key];
+      // Skip null/undefined values for Drizzle compatibility
+      if (value !== null && value !== undefined) {
+        filtered[key] = value;
+      }
     }
   }
 
-  return filtered;
+  return filtered as any;
 }
 
 export async function GET() {

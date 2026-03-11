@@ -33,9 +33,7 @@ const candidateSchema = z.object({
   phone: z.string().optional(),
   position: z.string().optional(),
   experience: z.string().optional(),
-  skills: z.string().optional().transform((val) => 
-    val ? val.split(",").map((s) => s.trim()) : []
-  ),
+  skills: z.string().optional(),
   qualifications: z.string().optional(),
   notes: z.string().optional(),
 });

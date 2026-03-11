@@ -51,7 +51,7 @@ export function JobForm({
   const handleRemoveSkill = (index: number) => {
     setFormData((prev) => ({
       ...prev,
-      skills: prev.skills.filter((_, i) => i !== index),
+      skills: prev.skills.filter((_skill: string, i: number) => i !== index),
     }));
   };
 
@@ -68,7 +68,7 @@ export function JobForm({
   const handleRemoveRequirement = (index: number) => {
     setFormData((prev) => ({
       ...prev,
-      requirements: prev.requirements.filter((_, i) => i !== index),
+      requirements: prev.requirements.filter((_req: string, i: number) => i !== index),
     }));
   };
 
@@ -85,7 +85,7 @@ export function JobForm({
   const handleRemoveResponsibility = (index: number) => {
     setFormData((prev) => ({
       ...prev,
-      responsibilities: prev.responsibilities.filter((_, i) => i !== index),
+      responsibilities: prev.responsibilities.filter((_resp: string, i: number) => i !== index),
     }));
   };
 
