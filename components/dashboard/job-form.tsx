@@ -96,11 +96,11 @@ export function JobForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Title */}
+{/* Title */}
       <div>
-        <label className="text-sm font-medium">Job Title *</label>
+        <label className="text-sm font-medium">Título del Empleo *</label>
         <Input
-          placeholder="e.g., Senior React Developer"
+          placeholder="ej., Desarrollador React Senior"
           value={formData.title}
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, title: e.target.value }))
@@ -112,9 +112,9 @@ export function JobForm({
       {/* Department and Location */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="text-sm font-medium">Department</label>
+          <label className="text-sm font-medium">Departamento</label>
           <Input
-            placeholder="e.g., Engineering"
+            placeholder="ej., Ingeniería"
             value={formData.department}
             onChange={(e) =>
               setFormData((prev) => ({ ...prev, department: e.target.value }))
@@ -122,9 +122,9 @@ export function JobForm({
           />
         </div>
         <div>
-          <label className="text-sm font-medium">Location</label>
+          <label className="text-sm font-medium">Ubicación</label>
           <Input
-            placeholder="e.g., San Francisco, CA"
+            placeholder="ej., Ciudad de México"
             value={formData.location}
             onChange={(e) =>
               setFormData((prev) => ({ ...prev, location: e.target.value }))
@@ -136,7 +136,7 @@ export function JobForm({
       {/* Job Type and Salary */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="text-sm font-medium">Job Type</label>
+          <label className="text-sm font-medium">Tipo de Empleo</label>
           <select
             value={formData.jobType}
             onChange={(e) =>
@@ -144,16 +144,16 @@ export function JobForm({
             }
             className="w-full px-3 py-2 border border-input rounded-md text-sm"
           >
-            <option value="full-time">Full-time</option>
-            <option value="part-time">Part-time</option>
-            <option value="contract">Contract</option>
-            <option value="remote">Remote</option>
+            <option value="full-time">Tiempo Completo</option>
+            <option value="part-time">Medio Tiempo</option>
+            <option value="contract">Contrato</option>
+            <option value="remote">Remoto</option>
           </select>
         </div>
         <div>
-          <label className="text-sm font-medium">Salary Range</label>
+          <label className="text-sm font-medium">Rango Salarial</label>
           <Input
-            placeholder="e.g., $100k - $150k"
+            placeholder="ej., $50,000 - $80,000"
             value={formData.salaryRange}
             onChange={(e) =>
               setFormData((prev) => ({ ...prev, salaryRange: e.target.value }))
@@ -164,9 +164,9 @@ export function JobForm({
 
       {/* Description */}
       <div>
-        <label className="text-sm font-medium">Description *</label>
+        <label className="text-sm font-medium">Descripción *</label>
         <Textarea
-          placeholder="Job description"
+          placeholder="Descripción del empleo"
           value={formData.description}
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, description: e.target.value }))
@@ -178,10 +178,10 @@ export function JobForm({
 
       {/* Requirements */}
       <div>
-        <label className="text-sm font-medium">Requirements</label>
+        <label className="text-sm font-medium">Requisitos</label>
         <div className="flex gap-2 mb-2">
           <Input
-            placeholder="Add a requirement"
+            placeholder="Agregar un requisito"
             value={newRequirement}
             onChange={(e) => setNewRequirement(e.target.value)}
             onKeyPress={(e) => {
@@ -197,7 +197,7 @@ export function JobForm({
             onClick={handleAddRequirement}
             disabled={!newRequirement.trim()}
           >
-            Add
+            Agregar
           </Button>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -218,10 +218,10 @@ export function JobForm({
 
       {/* Responsibilities */}
       <div>
-        <label className="text-sm font-medium">Responsibilities</label>
+        <label className="text-sm font-medium">Responsabilidades</label>
         <div className="flex gap-2 mb-2">
           <Input
-            placeholder="Add a responsibility"
+            placeholder="Agregar una responsabilidad"
             value={newResponsibility}
             onChange={(e) => setNewResponsibility(e.target.value)}
             onKeyPress={(e) => {
@@ -237,7 +237,7 @@ export function JobForm({
             onClick={handleAddResponsibility}
             disabled={!newResponsibility.trim()}
           >
-            Add
+            Agregar
           </Button>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -258,10 +258,10 @@ export function JobForm({
 
       {/* Skills */}
       <div>
-        <label className="text-sm font-medium">Required Skills</label>
+        <label className="text-sm font-medium">Habilidades Requeridas</label>
         <div className="flex gap-2 mb-2">
           <Input
-            placeholder="Add a skill"
+            placeholder="Agregar una habilidad"
             value={newSkill}
             onChange={(e) => setNewSkill(e.target.value)}
             onKeyPress={(e) => {
@@ -277,7 +277,7 @@ export function JobForm({
             onClick={handleAddSkill}
             disabled={!newSkill.trim()}
           >
-            Add
+            Agregar
           </Button>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -299,9 +299,9 @@ export function JobForm({
       {/* Experience and Qualifications */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="text-sm font-medium">Years of Experience</label>
+          <label className="text-sm font-medium">Años de Experiencia</label>
           <Input
-            placeholder="e.g., 5+ years"
+            placeholder="ej., 5+ años"
             value={formData.yearsOfExperience}
             onChange={(e) =>
               setFormData((prev) => ({
@@ -312,7 +312,7 @@ export function JobForm({
           />
         </div>
         <div>
-          <label className="text-sm font-medium">Status</label>
+          <label className="text-sm font-medium">Estado</label>
           <select
             value={formData.status}
             onChange={(e) =>
@@ -320,17 +320,17 @@ export function JobForm({
             }
             className="w-full px-3 py-2 border border-input rounded-md text-sm"
           >
-            <option value="draft">Draft</option>
-            <option value="active">Active</option>
+            <option value="draft">Borrador</option>
+            <option value="active">Activo</option>
           </select>
         </div>
       </div>
 
       {/* Qualifications */}
       <div>
-        <label className="text-sm font-medium">Qualifications</label>
+        <label className="text-sm font-medium">Calificaciones</label>
         <Textarea
-          placeholder="Education and other qualifications"
+          placeholder="Educación y otras calificaciones"
           value={formData.qualifications}
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, qualifications: e.target.value }))
@@ -342,7 +342,7 @@ export function JobForm({
       {/* Submit */}
       <div className="flex justify-end gap-3 pt-4">
         <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Saving..." : "Save Job"}
+          {isSubmitting ? "Guardando..." : "Guardar Empleo"}
         </Button>
       </div>
     </form>

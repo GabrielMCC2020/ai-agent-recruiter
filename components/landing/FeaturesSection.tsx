@@ -83,19 +83,19 @@ export default function FeaturesSection() {
   return (
     <section id="features" className="bg-[#0d1224] py-16">
       <div className="mx-auto max-w-7xl px-6">
-        {/* Header */}
+{/* Header */}
         <div className="text-center mb-16">
           <p className="text-sm font-semibold uppercase tracking-widest text-violet-400 mb-3">
-            Features
+            Características
           </p>
           <h2 className="text-4xl font-extrabold text-white sm:text-5xl">
-            Everything You Need to{" "}
+            Todo Lo Que Necesitas Para{" "}
             <span className="bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
-              Hire Faster
+              Contratar Más Rápido
             </span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
-            RecruitAI combines voice AI, automation, and analytics into one powerful platform built for modern recruiting teams.
+            RecruitAI combina voz IA, automatización y análisis en una plataforma poderosa construida para equipos de reclutamiento modernos.
           </p>
         </div>
 

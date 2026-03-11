@@ -88,19 +88,19 @@ export default function JobsPage() {
     expired: jobs.filter((j) => j.status === "expired").length,
   };
 
-  return (
+return (
     <div className="flex flex-col gap-4">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Jobs</h1>
+<h1 className="text-3xl font-bold tracking-tight">Empleos</h1>
           <p className="text-muted-foreground mt-1">
-            {jobs.length} job posting{jobs.length !== 1 ? "s" : ""}
+            {jobs.length} publicación{jobs.length !== 1 ? "es" : ""}
           </p>
         </div>
         <Button onClick={() => setDialogOpen(true)} className="gap-2">
           <Plus className="h-4 w-4" />
-          Add New Job
+          Nuevo Empleo
         </Button>
       </div>
 
@@ -109,7 +109,7 @@ export default function JobsPage() {
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search by title, description, location..."
+            placeholder="Buscar por título, descripción, ubicación..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
@@ -128,8 +128,12 @@ export default function JobsPage() {
               }
             >
               {status === "all"
-                ? "All"
-                : status.charAt(0).toUpperCase() + status.slice(1)}{" "}
+                ? "Todos"
+                : status === "draft"
+                  ? "Borrador"
+                  : status === "active"
+                    ? "Activo"
+                    : "Expirado"}{" "}
               ({status === "all"
                 ? jobs.length
                 : status === "draft"
@@ -147,20 +151,20 @@ export default function JobsPage() {
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-2 border-primary border-r-transparent mx-auto mb-4" />
-            <p className="text-muted-foreground">Loading jobs...</p>
+            <p className="text-muted-foreground">Cargando empleos...</p>
           </div>
         </div>
       ) : filteredJobs.length === 0 ? (
         <div className="rounded-lg border border-dashed border-muted-foreground/25 p-8 text-center">
           <p className="text-muted-foreground mb-4">
             {searchQuery || statusFilter !== "all"
-              ? "No jobs match your search"
-              : "No jobs yet. Start by creating your first job posting!"}
+              ? "No hay empleos que coincidan con tu búsqueda"
+              : "No hay empleos aún. ¡Comienza creando tu primera publicación!"}
           </p>
           {searchQuery === "" && statusFilter === "all" && (
             <Button onClick={() => setDialogOpen(true)} variant="outline">
               <Plus className="h-4 w-4 mr-2" />
-              Create Your First Job
+              Crear Primer Empleo
             </Button>
           )}
         </div>

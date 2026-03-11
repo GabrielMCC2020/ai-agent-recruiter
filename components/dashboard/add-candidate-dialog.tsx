@@ -111,17 +111,17 @@ export function AddCandidateDialog({
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="max-w-2xl">
-        <DialogHeader>
-          <DialogTitle>Add New Candidate</DialogTitle>
+<DialogHeader>
+          <DialogTitle>Agregar Nuevo Candidato</DialogTitle>
           <DialogDescription>
-            Upload a resume for AI-powered form filling or fill in the details manually.
+            Sube un currículum para completar el formulario automáticamente con IA o ingresa los datos manualmente.
           </DialogDescription>
         </DialogHeader>
 
         <Tabs defaultValue="resume" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="resume">Upload Resume</TabsTrigger>
-            <TabsTrigger value="manual">Manual Entry</TabsTrigger>
+            <TabsTrigger value="resume">Subir Currículum</TabsTrigger>
+            <TabsTrigger value="manual">Entrada Manual</TabsTrigger>
           </TabsList>
 
           <TabsContent value="resume" className="space-y-4">
@@ -139,8 +139,8 @@ export function AddCandidateDialog({
               >
                 <Upload className="mx-auto h-8 w-8 text-muted-foreground mb-2" />
                 <div className="space-y-1">
-                  <p className="text-sm font-medium">Drag and drop your resume here</p>
-                  <p className="text-xs text-muted-foreground">or</p>
+                  <p className="text-sm font-medium">Arrastra y suelta tu currículum aquí</p>
+                  <p className="text-xs text-muted-foreground">o</p>
                 </div>
                 <Button
                   variant="outline"
@@ -158,10 +158,10 @@ export function AddCandidateDialog({
                   }}
                   className="mt-2"
                 >
-                  Select File
+                  Seleccionar Archivo
                 </Button>
                 <p className="text-xs text-muted-foreground mt-2">
-                  PDF files only, max 10MB
+                  Solo archivos PDF, máximo 10MB
                 </p>
               </div>
             ) : (
@@ -180,7 +180,7 @@ export function AddCandidateDialog({
                       size="sm"
                       onClick={handleReset}
                     >
-                      Remove
+                      Eliminar
                     </Button>
                   )}
                 </div>
@@ -189,7 +189,7 @@ export function AddCandidateDialog({
                   <div className="flex items-center justify-center py-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-2 border-primary border-r-transparent" />
                     <p className="ml-2 text-sm text-muted-foreground">
-                      Parsing resume...
+                      Analizando currículum...
                     </p>
                   </div>
                 )}

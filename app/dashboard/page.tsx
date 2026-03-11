@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 function formatDate(date: Date | null) {
   if (!date) return "N/A";
-  return new Date(date).toLocaleDateString("en-US", {
+  return new Date(date).toLocaleDateString("es-ES", {
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -24,9 +24,9 @@ function formatRelativeDaysAgo(date: Date | null) {
   const diff = Math.max(0, now - new Date(date).getTime());
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-  if (days === 0) return "Today";
-  if (days === 1) return "1 day ago";
-  return `${days} days ago`;
+  if (days === 0) return "Hoy";
+  if (days === 1) return "Ayer";
+  return `Hace ${days} días`;
 }
 
 export default async function DashboardPage() {
@@ -43,9 +43,9 @@ export default async function DashboardPage() {
   if (!user) {
     return (
       <div className="rounded-xl border border-sidebar-border bg-card p-6">
-        <h1 className="text-2xl font-semibold text-foreground">Dashboard</h1>
+        <h1 className="text-2xl font-semibold text-foreground">Panel de Control</h1>
         <p className="mt-2 text-muted-foreground">
-          User profile not synced yet. Refresh in a moment.
+          Perfil de usuario no sincronizado aún. Actualiza en un momento.
         </p>
       </div>
     );
@@ -147,56 +147,56 @@ export default async function DashboardPage() {
   const recentJobs = jobsList.slice(0, 5);
   const recentCandidates = candidatesList.slice(0, 5);
 
-  return (
+return (
     <div className="flex flex-col gap-6">
       <div className="rounded-xl border border-sidebar-border bg-card p-6">
-        <h1 className="text-2xl font-semibold text-foreground">Dashboard</h1>
+        <h1 className="text-2xl font-semibold text-foreground">Panel de Control</h1>
         <p className="mt-2 text-muted-foreground">
-          Live overview of your jobs, candidates, and interview activity.
+          Vista general de tus empleos, candidatos y actividad de entrevistas.
         </p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Total Jobs</CardDescription>
+            <CardDescription>Total de Empleos</CardDescription>
             <CardTitle className="text-3xl">{totalJobs}</CardTitle>
           </CardHeader>
           <CardContent className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">{activeJobs} active postings</span>
+            <span className="text-sm text-muted-foreground">{activeJobs} publicaciones activas</span>
             <ClipboardList className="h-5 w-5 text-muted-foreground" />
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Total Candidates</CardDescription>
+            <CardDescription>Total de Candidatos</CardDescription>
             <CardTitle className="text-3xl">{totalCandidates}</CardTitle>
           </CardHeader>
           <CardContent className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">{hiredCandidates} hired</span>
+            <span className="text-sm text-muted-foreground">{hiredCandidates} contratados</span>
             <Users className="h-5 w-5 text-muted-foreground" />
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Interviews This Week</CardDescription>
+            <CardDescription>Entrevistas Esta Semana</CardDescription>
             <CardTitle className="text-3xl">{interviewsScheduledThisWeek}</CardTitle>
           </CardHeader>
           <CardContent className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">Last 7 days</span>
+            <span className="text-sm text-muted-foreground">Últimos 7 días</span>
             <CalendarClock className="h-5 w-5 text-muted-foreground" />
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Completed Interviews</CardDescription>
+            <CardDescription>Entrevistas Completadas</CardDescription>
             <CardTitle className="text-3xl">{completedInterviews.length}</CardTitle>
           </CardHeader>
           <CardContent className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">{pendingInvites.length} pending</span>
+            <span className="text-sm text-muted-foreground">{pendingInvites.length} pendientes</span>
             <CircleCheckBig className="h-5 w-5 text-muted-foreground" />
           </CardContent>
         </Card>
@@ -205,12 +205,12 @@ export default async function DashboardPage() {
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
         <Card>
           <CardHeader>
-            <CardTitle>Recent Jobs</CardTitle>
-            <CardDescription>Latest postings</CardDescription>
+            <CardTitle>Empleos Recientes</CardTitle>
+            <CardDescription>Últimas publicaciones</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {recentJobs.length === 0 ? (
-              <p className="text-sm text-muted-foreground">No jobs created yet.</p>
+              <p className="text-sm text-muted-foreground">No hay empleos creados aún.</p>
             ) : (
               recentJobs.map((job) => (
                 <div key={job.id} className="rounded-md border p-3">
@@ -221,25 +221,25 @@ export default async function DashboardPage() {
                     </Badge>
                   </div>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    Created {formatRelativeDaysAgo(job.createdAt)}
+                    Creado {formatRelativeDaysAgo(job.createdAt)}
                   </p>
                 </div>
               ))
             )}
             <Button asChild variant="outline" className="w-full">
-              <Link href="/dashboard/jobs">View all jobs</Link>
+              <Link href="/dashboard/jobs">Ver todos los empleos</Link>
             </Button>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle>Recent Candidates</CardTitle>
-            <CardDescription>Latest additions</CardDescription>
+            <CardTitle>Candidatos Recientes</CardTitle>
+            <CardDescription>Últimas incorporaciones</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {recentCandidates.length === 0 ? (
-              <p className="text-sm text-muted-foreground">No candidates added yet.</p>
+              <p className="text-sm text-muted-foreground">No hay candidatos agregados aún.</p>
             ) : (
               recentCandidates.map((candidate) => (
                 <div key={candidate.id} className="rounded-md border p-3">
@@ -256,19 +256,19 @@ export default async function DashboardPage() {
               ))
             )}
             <Button asChild variant="outline" className="w-full">
-              <Link href="/dashboard/candidates">View all candidates</Link>
+              <Link href="/dashboard/candidates">Ver todos los candidatos</Link>
             </Button>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle>Interview Activity</CardTitle>
-            <CardDescription>Pending and recent completions</CardDescription>
+            <CardTitle>Actividad de Entrevistas</CardTitle>
+            <CardDescription>Pendientes y completados recientes</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {pendingInvites.length === 0 && completedInterviews.length === 0 ? (
-              <p className="text-sm text-muted-foreground">No interview activity yet.</p>
+              <p className="text-sm text-muted-foreground">No hay actividad de entrevistas aún.</p>
             ) : (
               <>
                 {pendingInvites.slice(0, 3).map((invite) => (
@@ -278,7 +278,7 @@ export default async function DashboardPage() {
                       {invite.title} • {invite.status}
                     </p>
                     <p className="mt-1 text-xs text-muted-foreground">
-                      Invite sent {formatRelativeDaysAgo(invite.createdAt)}
+                      Invitación enviada {formatRelativeDaysAgo(invite.createdAt)}
                     </p>
                   </div>
                 ))}
@@ -290,14 +290,14 @@ export default async function DashboardPage() {
                       {interview.title} • {interview.overallRating || "N/A"}
                     </p>
                     <p className="mt-1 text-xs text-muted-foreground">
-                      Completed {formatDate(interview.completedAt)}
+                      Completado {formatDate(interview.completedAt)}
                     </p>
                   </div>
                 ))}
               </>
             )}
             <Button asChild variant="outline" className="w-full">
-              <Link href="/dashboard/schedules">View interviews</Link>
+              <Link href="/dashboard/schedules">Ver entrevistas</Link>
             </Button>
           </CardContent>
         </Card>

@@ -151,11 +151,11 @@ export default function SchedulesPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+{/* Header */}
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Schedules & Interviews</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Agendas y Entrevistas</h1>
         <p className="text-muted-foreground mt-2">
-          Track invited candidates and review AI interview results by job.
+          Rastrea candidatos invitados y revisa los resultados de entrevistas con IA por empleo.
         </p>
       </div>
 

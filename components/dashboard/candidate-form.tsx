@@ -27,9 +27,9 @@ import {
 import { toast } from "sonner";
 
 const candidateSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Invalid email address"),
+  firstName: z.string().min(1, "El nombre es requerido"),
+  lastName: z.string().min(1, "El apellido es requerido"),
+  email: z.string().email("Correo electrónico inválido"),
   phone: z.string().optional(),
   position: z.string().optional(),
   experience: z.string().optional(),
@@ -109,14 +109,14 @@ export function CandidateForm({
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <div className="grid grid-cols-2 gap-4">
-          <FormField
+<FormField
             control={form.control}
             name="firstName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>First Name *</FormLabel>
+                <FormLabel>Nombre *</FormLabel>
                 <FormControl>
-                  <Input placeholder="John" {...field} />
+                  <Input placeholder="Juan" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -127,9 +127,9 @@ export function CandidateForm({
             name="lastName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Last Name *</FormLabel>
+                <FormLabel>Apellido *</FormLabel>
                 <FormControl>
-                  <Input placeholder="Doe" {...field} />
+                  <Input placeholder="Pérez" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -143,11 +143,11 @@ export function CandidateForm({
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email *</FormLabel>
+                <FormLabel>Correo Electrónico *</FormLabel>
                 <FormControl>
                   <Input
                     type="email"
-                    placeholder="john@example.com"
+                    placeholder="juan@ejemplo.com"
                     {...field}
                   />
                 </FormControl>
@@ -160,9 +160,9 @@ export function CandidateForm({
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone</FormLabel>
+                <FormLabel>Teléfono</FormLabel>
                 <FormControl>
-                  <Input placeholder="+1 (555) 000-0000" {...field} />
+                  <Input placeholder="+52 555 000 0000" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -176,9 +176,9 @@ export function CandidateForm({
             name="position"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Position</FormLabel>
+                <FormLabel>Posición</FormLabel>
                 <FormControl>
-                  <Input placeholder="Senior Developer" {...field} />
+                  <Input placeholder="Desarrollador Senior" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -189,9 +189,9 @@ export function CandidateForm({
             name="experience"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Experience</FormLabel>
+                <FormLabel>Experiencia</FormLabel>
                 <FormControl>
-                  <Input placeholder="5 years" {...field} />
+                  <Input placeholder="5 años" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -204,7 +204,7 @@ export function CandidateForm({
           name="skills"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Skills</FormLabel>
+              <FormLabel>Habilidades</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="JavaScript, React, Node.js, Python..."
@@ -214,7 +214,7 @@ export function CandidateForm({
                 />
               </FormControl>
               <FormDescription>
-                Separate skills with commas
+                Separa las habilidades con comas
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -226,9 +226,9 @@ export function CandidateForm({
           name="qualifications"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Education & Certifications</FormLabel>
+              <FormLabel>Educación y Certificaciones</FormLabel>
               <FormControl>
-                <Textarea placeholder="Enter qualifications..." {...field} />
+                <Textarea placeholder="Ingresa las certificaciones..." {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -240,10 +240,10 @@ export function CandidateForm({
           name="notes"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Notes</FormLabel>
+              <FormLabel>Notas</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Add any additional notes..."
+                  placeholder="Agrega notas adicionales..."
                   {...field}
                   className="resize-none"
                   rows={3}
@@ -255,7 +255,7 @@ export function CandidateForm({
         />
 
         <Button type="submit" disabled={isSubmitting} className="w-full">
-          {isSubmitting ? "Adding Candidate..." : "Add Candidate"}
+          {isSubmitting ? "Agregando Candidato..." : "Agregar Candidato"}
         </Button>
       </form>
     </Form>

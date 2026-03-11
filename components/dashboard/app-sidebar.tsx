@@ -41,27 +41,27 @@ import { useUser } from "@clerk/nextjs";
 
 const navItems = [
   {
-    title: "Home",
+    title: "Inicio",
     href: "/dashboard",
     icon: Home,
   },
   {
-    title: "Jobs",
+    title: "Empleos",
     href: "/dashboard/jobs",
     icon: Briefcase,
   },
   {
-    title: "Candidates",
+    title: "Candidatos",
     href: "/dashboard/candidates",
     icon: Users,
   },
   {
-    title: "Schedules",
+    title: "Agendas",
     href: "/dashboard/schedules",
     icon: Calendar,
   },
   {
-    title: "Settings",
+    title: "Configuración",
     href: "/dashboard/settings",
     icon: Settings,
   },

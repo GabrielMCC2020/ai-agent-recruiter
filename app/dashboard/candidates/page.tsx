@@ -100,19 +100,19 @@ export default function CandidatesPage() {
     setCurrentPage(1);
   };
 
-  return (
+return (
     <div className="flex flex-col gap-4">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Candidates</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Candidatos</h1>
           <p className="text-muted-foreground mt-1">
-            {filteredCandidates.length} candidate{filteredCandidates.length !== 1 ? "s" : ""} found
+            {filteredCandidates.length} candidato{filteredCandidates.length !== 1 ? "s" : ""} encontrado{filteredCandidates.length !== 1 ? "s" : ""}
           </p>
         </div>
         <Button onClick={() => setDialogOpen(true)} className="gap-2">
           <Plus className="h-4 w-4" />
-          Add Candidate
+          Agregar Candidato
         </Button>
       </div>
 
@@ -121,7 +121,7 @@ export default function CandidatesPage() {
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search by name, email, position, or skills..."
+            placeholder="Buscar por nombre, correo, posición o habilidades..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
@@ -137,7 +137,7 @@ export default function CandidatesPage() {
             className="gap-2"
           >
             <Grid3x3 className="h-4 w-4" />
-            Grid
+            Cuadrícula
           </Button>
           <Button
             variant={viewType === "list" ? "default" : "outline"}
@@ -146,7 +146,7 @@ export default function CandidatesPage() {
             className="gap-2"
           >
             <List className="h-4 w-4" />
-            List
+            Lista
           </Button>
         </div>
       </div>
@@ -156,20 +156,20 @@ export default function CandidatesPage() {
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-2 border-primary border-r-transparent mx-auto mb-4" />
-            <p className="text-muted-foreground">Loading candidates...</p>
+            <p className="text-muted-foreground">Cargando candidatos...</p>
           </div>
         </div>
       ) : filteredCandidates.length === 0 ? (
         <div className="rounded-lg border border-dashed border-muted-foreground/25 p-8 text-center">
           <p className="text-muted-foreground mb-4">
             {searchQuery
-              ? "No candidates match your search"
-              : "No candidates yet. Start by adding your first candidate!"}
+              ? "No hay candidatos que coincidan con tu búsqueda"
+              : "No hay candidatos aún. ¡Comienza agregando tu primer candidato!"}
           </p>
           {!searchQuery && (
             <Button onClick={() => setDialogOpen(true)} variant="outline">
               <Plus className="h-4 w-4 mr-2" />
-              Add Your First Candidate
+              Agregar Primer Candidato
             </Button>
           )}
         </div>

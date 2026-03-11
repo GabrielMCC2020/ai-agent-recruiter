@@ -78,10 +78,10 @@ export function AddJobDialog({
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>Add New Job Posting</DialogTitle>
+<DialogHeader>
+          <DialogTitle>Agregar Nueva Publicación de Empleo</DialogTitle>
           <DialogDescription>
-            Fill in the job details or let AI generate them from a job title
+            Completa los detalles del empleo o permite que la IA los genere a partir de un título
           </DialogDescription>
         </DialogHeader>
 
@@ -89,18 +89,18 @@ export function AddJobDialog({
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="ai" className="gap-2">
               <Sparkles className="h-4 w-4" />
-              AI Generated
+              Generado por IA
             </TabsTrigger>
-            <TabsTrigger value="manual">Manual Entry</TabsTrigger>
+            <TabsTrigger value="manual">Entrada Manual</TabsTrigger>
           </TabsList>
 
           <TabsContent value="ai" className="space-y-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">Job Title</label>
+              <label className="text-sm font-medium">Título del Empleo</label>
               <div className="flex gap-2">
                 <input
                   type="text"
-                  placeholder="e.g., Senior React Developer"
+                  placeholder="ej., Desarrollador React Senior"
                   value={jobTitle}
                   onChange={(e) => setJobTitle(e.target.value)}
                   onKeyPress={(e) => {
@@ -118,7 +118,7 @@ export function AddJobDialog({
                   ) : (
                     <Sparkles className="h-4 w-4" />
                   )}
-                  Generate
+                  Generar
                 </Button>
               </div>
             </div>

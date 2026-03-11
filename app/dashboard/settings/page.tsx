@@ -137,13 +137,13 @@ export default function SettingsPage() {
     );
   }
 
-  return (
+return (
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Configuración</h1>
         <p className="text-muted-foreground mt-2">
-          Manage your AI recruiter voice agent configuration and preferences
+          Gestiona la configuración y preferencias del agente de voz reclutador de IA
         </p>
       </div>
 
@@ -151,26 +151,26 @@ export default function SettingsPage() {
       {hasChanges && (
         <div className="sticky top-0 z-40 flex items-center justify-between gap-3 p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <div>
-            <p className="font-medium text-blue-900">You have unsaved changes</p>
+            <p className="font-medium text-blue-900">Tienes cambios sin guardar</p>
             <p className="text-sm text-blue-800">
-              Click save to apply your changes to the AI recruiter configuration
+              Haz clic en guardar para aplicar tus cambios a la configuración del reclutador de IA
             </p>
           </div>
           <div className="flex gap-2">
             <Button variant="outline" onClick={handleReset} size="sm">
               <RotateCcw className="h-4 w-4 mr-2" />
-              Discard
+              Descartar
             </Button>
             <Button onClick={handleSaveSettings} disabled={saving} size="sm">
               {saving ? (
                 <>
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  Saving...
+                  Guardando...
                 </>
               ) : (
                 <>
                   <Save className="h-4 w-4 mr-2" />
-                  Save Changes
+                  Guardar Cambios
                 </>
               )}
             </Button>

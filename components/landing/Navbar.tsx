@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Mic2 } from "lucide-react";
 
 const navLinks = [
-  { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "Características", href: "#features" },
+  { label: "Cómo Funciona", href: "#how-it-works" },
+  { label: "Precios", href: "#pricing" },
+  { label: "Testimonios", href: "#testimonials" },
 ];
 
 export default function Navbar() {

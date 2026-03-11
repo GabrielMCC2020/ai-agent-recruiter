@@ -4,29 +4,29 @@ const steps = [
   {
     step: "01",
     icon: Upload,
-    title: "Import Candidates",
+    title: "Importar Candidatos",
     description:
-      "Upload a CSV, paste a job description, or connect your ATS. RecruitAI instantly parses candidate profiles — name, contact, role, and experience.",
+      "Sube un CSV, pega una descripción del puesto, o conecta tu ATS. RecruitAI analiza al instante los perfiles de candidatos — nombre, contacto, rol y experiencia.",
     color: "violet",
-    details: ["CSV & Excel upload", "PDF resume parsing", "ATS integrations", "Manual entry"],
+    details: ["Subir CSV y Excel", "Análisis de currículum PDF", "Integraciones con ATS", "Entrada manual"],
   },
   {
     step: "02",
     icon: PhoneCall,
-    title: "AI Calls & Screens",
+    title: "Llamadas y Entrevistas con IA",
     description:
-      "Our voice AI agent automatically dials each candidate, introduces itself, and conducts a natural, conversational screening interview tailored to the role.",
+      "Nuestro agente de voz con IA automáticamente marca a cada candidato, se presenta y conduce una entrevista de selección natural y conversacional adaptada al puesto.",
     color: "indigo",
-    details: ["Natural voice conversations", "Role-specific questions", "Real-time transcription", "Sentiment analysis"],
+    details: ["Conversaciones de voz naturales", "Preguntas específicas del rol", "Transcripción en tiempo real", "Análisis de sentimiento"],
   },
   {
     step: "03",
     icon: CalendarCheck,
-    title: "Schedule Interviews",
+    title: "Agendar Entrevistas",
     description:
-      "Qualified candidates are automatically scored and ranked. Top candidates receive instant calendar invites for the next interview round — zero manual effort.",
+      "Los candidatos calificados son automáticamente puntuados y clasificados. Los mejores candidatos reciben invitaciones de calendario instantáneas para la siguiente ronda de entrevista — cero esfuerzo manual.",
     color: "emerald",
-    details: ["Auto candidate scoring", "Calendar integration", "Instant booking links", "Email & SMS confirmations"],
+    details: ["Puntuación automática de candidatos", "Integración con calendario", "Enlaces de reserva instantáneos", "Confirmaciones por email y SMS"],
   },
 ];
 
@@ -61,16 +61,16 @@ export default function HowItWorks() {
         {/* Header */}
         <div className="text-center mb-16">
           <p className="text-sm font-semibold uppercase tracking-widest text-violet-400 mb-3">
-            How It Works
+            Cómo Funciona
           </p>
           <h2 className="text-4xl font-extrabold text-white sm:text-5xl">
-            From Import to Interview in{" "}
+            De Importar a Entrevistar en{" "}
             <span className="bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
-              3 Simple Steps
+              3 Simples Pasos
             </span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
-            No complex setup. No manual calling. Just import your candidates and let the AI handle the rest.
+            Sin configuración compleja. Sin llamadas manuales. Solo importa tus candidatos y deja que la IA maneje el resto.
           </p>
         </div>
 
@@ -97,7 +97,7 @@ export default function HowItWorks() {
                 >
                   {/* Step number */}
                   <div className={`mb-6 inline-flex items-center justify-center rounded-xl ${c.badge} px-3 py-1 text-xs font-bold tracking-widest`}>
-                    STEP {step.step}
+                    PASO {step.step}
                   </div>
 
                   {/* Icon */}
@@ -127,3 +127,4 @@ export default function HowItWorks() {
     </section>
   );
 }
+

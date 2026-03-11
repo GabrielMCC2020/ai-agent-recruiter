@@ -28,13 +28,13 @@ export function VoiceAgentSettings({
 }: VoiceAgentSettingsProps) {
   return (
     <Card>
-      <CardHeader>
+<CardHeader>
         <div className="flex items-center gap-2">
           <Mic className="h-5 w-5 text-blue-500" />
           <div>
-            <CardTitle>Voice Agent Configuration</CardTitle>
+            <CardTitle>Configuración del Agente de Voz</CardTitle>
             <CardDescription>
-              Customize how the AI voice agent interacts with candidates
+              Personaliza cómo el agente de voz de IA interactúa con los candidatos
             </CardDescription>
           </div>
         </div>
